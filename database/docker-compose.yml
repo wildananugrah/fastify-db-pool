@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  youtube-db:
+    image: postgres:alpine
+    container_name: youtube-db
+    ports:
+      - "6000:5432"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: p0stgr3s
+    volumes:
+      - ./youtube-db:/var/lib/postgresql/data
+    networks:
+      app-net: {}
+
+networks:
+  app-net:
+    external: true
+    name: "youtube-net"
